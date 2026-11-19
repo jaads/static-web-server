@@ -19,8 +19,7 @@ use crate::body::Body;
 use crate::conditional_headers::{ConditionalBody, ConditionalHeaders, Validators};
 use crate::fs::stream::{FileStream, optimal_buf_size};
 
-pub(crate) use range::{BadRangeError, bytes_range};
-pub(crate) mod range;
+use crate::range::{BadRangeError, bytes_range};
 
 /// Pre-computed `HeaderValue` for `Accept-Ranges: bytes`.
 ///

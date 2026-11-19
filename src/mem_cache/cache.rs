@@ -25,7 +25,7 @@ use crate::body::{self, Body};
 use crate::conditional_headers::{ConditionalBody, ConditionalHeaders, Validators};
 use crate::exts::headers::{AcceptEncoding, ContentCoding};
 use crate::handler_opts::RequestHandlerOpts;
-use crate::response::range::{BadRangeError, bytes_range};
+use crate::range::{BadRangeError, bytes_range};
 
 /// Cache key: the requested file path and the content coding of the stored
 /// representation, so a pre-compressed variant never answers for the
