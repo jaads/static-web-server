@@ -7,7 +7,7 @@
 
 use hyper::{Method, Response, header::HeaderValue};
 
-/// A fixed list of HTTP methods supported by SWS.
+/// A fixed list of HTTP methods supported by SWS.ssa
 pub const HTTP_SUPPORTED_METHODS: &[Method; 3] = &[Method::OPTIONS, Method::HEAD, Method::GET];
 
 /// SWS HTTP Method extensions traitt.
