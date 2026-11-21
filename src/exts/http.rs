@@ -24,7 +24,7 @@ pub trait MethodExt {
 }
 
 impl MethodExt for Method {
-    /// Checks if the HTTP method is allowed (supported) by SWS.
+    /// Checks if the HTTP method is allowed (supported) by SWS..
     #[inline(always)]
     fn is_allowed(&self) -> bool {
         for method in HTTP_SUPPORTED_METHODS {
