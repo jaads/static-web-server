@@ -6,6 +6,8 @@
 //! Module that provides HTTP header conditionals.
 //!
 
+use std::fs::Metadata;
+
 use crate::body::Body;
 use headers::{
     ETag, HeaderMap, HeaderMapExt, HeaderValue, IfMatch, IfModifiedSince, IfNoneMatch, IfRange,
@@ -57,6 +59,16 @@ pub(crate) struct Validators<'a> {
     pub(crate) last_modified: Option<LastModified>,
     pub(crate) etag: Option<&'a ETag>,
     pub(crate) etag_value: Option<&'a HeaderValue>,
+}
+
+/// Builds the weak `ETag` validator for a file, or `None` when the ETag
+/// feature is disabled or the file has no usable modified time.
+pub(crate) fn file_etag(meta: &Metadata, enabled: bool) -> Option<(ETag, HeaderValue)> {
+    if enabled {
+        crate::etag::build_from_meta(meta)
+    } else {
+        None
+    }
 }
 
 impl ConditionalHeaders {

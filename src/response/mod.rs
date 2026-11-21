@@ -16,7 +16,7 @@ use std::io::{BufReader, Read, Seek, SeekFrom};
 use std::path::Path;
 
 use crate::body::Body;
-use crate::conditional_headers::{ConditionalBody, ConditionalHeaders, Validators};
+use crate::conditional_headers::{ConditionalBody, ConditionalHeaders, Validators, file_etag};
 use crate::fs::stream::{FileStream, optimal_buf_size};
 
 pub(crate) use range::{BadRangeError, bytes_range};
@@ -104,11 +104,7 @@ pub(crate) fn response_body(
     // Build a weak ETag from `(mtime, size)` once per response. The same
     // header value is used for the body response, the cache entry (when
     // applicable) and the 304 / If-Range short-circuit paths.
-    let etag = if etag_enabled {
-        crate::etag::build_from_meta(meta)
-    } else {
-        None
-    };
+    let etag = file_etag(meta, etag_enabled);
     let (etag_typed, etag_value) = match etag.as_ref() {
         Some((t, v)) => (Some(t), Some(v)),
         None => (None, None),

@@ -7,10 +7,10 @@
 
 use hyper::{Method, Response, header::HeaderValue};
 
-/// A fixed list of HTTP methods supported by SWS.
+/// A fixed list of HTTP methods supported by SWS.ssa
 pub const HTTP_SUPPORTED_METHODS: &[Method; 3] = &[Method::OPTIONS, Method::HEAD, Method::GET];
 
-/// SWS HTTP Method extensions trait.
+/// SWS HTTP Method extensions traitt.
 pub trait MethodExt {
     /// If method is allowed.
     fn is_allowed(&self) -> bool;
@@ -24,7 +24,7 @@ pub trait MethodExt {
 }
 
 impl MethodExt for Method {
-    /// Checks if the HTTP method is allowed (supported) by SWS.
+    /// Checks if the HTTP method is allowed (supported) by SWS..
     #[inline(always)]
     fn is_allowed(&self) -> bool {
         for method in HTTP_SUPPORTED_METHODS {
